@@ -16,7 +16,7 @@ class shellCall():
         folderLocation = ("C:/Users/aoliveir/")
                
         #call the problog and check errors       
-        pr = subprocess.Popen(['problog','teste.pl'], cwd = folderLocation,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+        pr = subprocess.Popen(['problog','carAt.pl'], cwd = folderLocation,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
         stdout, stderr = pr.communicate()
         
         #handling errors on problog
@@ -32,14 +32,15 @@ class shellCall():
             return 0
         #getting the output from probability from problog
         else:
-            p =stdout[7:12] #clean up string and get only the probability
+            p =stdout[10:14] #clean up string and get only the probability
+            print(p)
             p = float(p)
             print(type(p),p)
             print("Probability :",p)
         
         #getting the output from probability from problog
         end = timer()
-        print("Inference elapsed time ",(end-start)*1000,"ms")
+        print("Inference elapsed time: ",round((end-start)*1000,2),"ms")
 
 if __name__ == '__main__':
     
