@@ -40,20 +40,20 @@ def writeAnno(values):
     for value in values:
         
         if i == 0 and value is True:
-            newAnno[0] = "none\n"
-            file.write(newAnno[0]) 
+            newAnno[0] = "none"
+            file.write(newAnno[0]+",0\n") 
         if i == 1 and value is True:
-            newAnno[1] = "very_low\n"
-            file.write(newAnno[1])     
+            newAnno[1] = "very_low"
+            file.write(newAnno[1]+",1\n")     
         if i == 2 and value is True:
-            newAnno[2] = "low\n"
-            file.write(newAnno[1])    
+            newAnno[2] = "low"
+            file.write(newAnno[2]+",2\n")    
         if i == 3 and value is True:
-            newAnno[3] = "medium\n" 
-            file.write(newAnno[2])   
+            newAnno[3] = "medium" 
+            file.write(newAnno[3]+",3\n")   
         if i == 4 and value is True:
-            newAnno[4] = "high\n"
-            file.write(newAnno[3])       
+            newAnno[4] = "high"
+            file.write(newAnno[4]+",4\n")       
         i=i+1
         
     file.close()
