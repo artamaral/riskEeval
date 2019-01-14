@@ -4,13 +4,20 @@ Created on 9 de jan de 2019
 @author: aoliveir
 '''
 import pandas as pd
+from sklearn.metrics import accuracy_score
+from sklearn.metrics import recall_score
+from sklearn.metrics import precision_score
 
+
+
+
+#import accuracy_score
 class pXr:
     
     def readAnno(self):
         
         file_human = open("humanAnnotation.txt","r")
-        file_machine = open("machineAnnotation.txt","r")
+        file_machine = open("machineAnno.txt","r")
         
         humanAnno =[]
         machineAnno = []
@@ -65,9 +72,26 @@ class pXr:
                    
         return sum,tp,fp,fn    
 
+
+    def calc_plot_PxR_curve(self):
+        
+        df = pd.read_csv('data.csv')
+        df.head()
+        thresh = 0.5
+        df['predicted_RF'] = (df.label_rf >= 0.60).astype('int')
+        print(df.predicted_RF.values)
+        accuracy_sc = accuracy_score(df.actual_label.values, df.predicted_RF.values)
+        recall_sc = recall_score(df.actual_label.values, df.predicted_RF.values)
+        precision_sc = precision_score(df.actual_label.values, df.predicted_RF.values)
+
+        print("accuracy score:" +str(accuracy_sc)+"\n recall score:" + str(recall_sc) 
+              + "\n precision score:"+ str(precision_sc))
+        return 1
+        
        
 if __name__ == '__main__':
     
     newCall = pXr()
-    newCall.readAnno()   
+    #newCall.readAnno()   
+    newCall.calc_plot_PxR_curve()
     
